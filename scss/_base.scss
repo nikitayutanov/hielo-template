@@ -1,0 +1,122 @@
+$main-white: #fff;
+$main-black: #000;
+$milky-white: #f2f2f2;
+$subheading-color: #bbb;
+$text-color: #999;
+$button-bg-color: #e9e9e9;
+$button-border-color: #ddd;
+$top: 100%;
+
+@mixin flex-center($direction: row) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-space-between {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+@mixin transition {
+    transition: all 0.35s;
+}
+
+@mixin underline($bottom: 0) {
+    content: "";
+    width: 50%;
+    height: 1px;
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: $bottom;
+    background-color: $subheading-color;
+}
+
+@mixin square-width($percentages) {
+    width: $percentages;
+    padding-bottom: $percentages;
+}
+
+@mixin sm {
+    @media screen and (min-width: 576px) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media screen and (min-width: 992px) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media screen and (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin rwd($screen) {
+    @media screen and (min-width: $screen) {
+        @content;
+    }
+}
+
+%subheading {
+    position: relative;
+    text-transform: uppercase;
+    color: $subheading-color;
+    letter-spacing: .25rem;
+}
+
+%button-link {
+    @include transition;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    color: $main-black;
+    background-color: $main-white;
+    border: 2px solid $button-border-color;
+    border-radius: 2px;
+
+    &:hover {
+        background-color: $button-bg-color;
+    }
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    color: $text-color;
+}
+
+header,
+footer,
+section {
+    padding: 3rem 1.5rem;
+}
+
+header, footer {
+    background-color: $main-black;
+}
+
+main {
+    background-color: $milky-white;
+}
+
+h2 {
+    font-size: 1.75rem;
+    color: $main-black;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
