@@ -462,8 +462,16 @@ h3 {
   transition: all 0.35s;
   width: 100%;
   height: 3px;
-  background-color: #fff;
+  background-color: #bbb;
   border-radius: 10px;
+}
+
+:hover > .menu__hamburger, :hover > .menu__hamburger::before, :hover > .menu__hamburger::after {
+  background-color: #fff;
+}
+
+:hover > .menu__hamburger--open {
+  background-color: transparent;
 }
 
 .menu__hamburger::before {
