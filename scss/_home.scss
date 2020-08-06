@@ -29,7 +29,6 @@
 }
 
 .recent-articles {
-    $margin-bottom: 2rem;
     @include flex-space-between;
     margin-bottom: -$margin-bottom;
 }
