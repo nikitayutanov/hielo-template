@@ -3,16 +3,26 @@
         max-width: 1300px;
         margin: 0 auto;
     }
+
+    &__parallax-container {
+        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+        perspective: 1px;
+    }
 }
 
 .header {
-    $dark-layer: rgba(0, 0, 0, 0.25);
     @include flex-center(column);
+    @include parallax-item;
+    width: 101%;
     min-height: 100vh;
     text-align: center;
     color: $main-white;
-    background: linear-gradient(to right, $dark-layer, $dark-layer),
-                url(img/slide/slide01.jpg) top/cover no-repeat;
+
+    &::before {
+        @include parallax-bg("slide/slide01", top);
+    }
 
     &__heading {
         font-size: 7.5rem;
@@ -30,14 +40,14 @@
 
 .recent-articles {
     @include flex-space-between;
-    margin-bottom: -$margin-bottom;
+    margin-bottom: -$margin-b;
 }
 
 .card {
     $image-height: 200px;
     @include flex-center(column);
     justify-content: space-between;
-    margin-bottom: $margin-bottom;
+    margin-bottom: $margin-b;
     padding: 2.5rem 2rem;
     padding-top: calc(#{$image-height} + 2rem);
     position: relative;
@@ -93,24 +103,31 @@
     }
 }
 
-.splitter {
-    height: 25px;
-    padding: 0;
-    background: url(img/bg.jpg) center/cover no-repeat;
-}
-
 .gallery {
+    padding: 0 0 $padding-t-b 0;
     text-align: center;
 
-    h2 {
-        text-align: left;
-        margin-bottom: 2rem;
+    &__header {
+        $splitter-height: 150px;
+        @include parallax-item;
+        width: 101%;
+        min-height: $splitter-height;
+        padding: 0 $padding-l-r;
+    
+        &::before {
+            @include parallax-bg("bg", bottom); 
+        }
+    
+        h2 {
+            text-align: left;
+            line-height: $splitter-height;
+            color: $main-white;
+        }
     }
 
-    &__container {
+    &__main {
         @include flex-center;
         flex-wrap: wrap;
-        margin-bottom: 3rem;
     }
     
     &__img-wrapper {
@@ -147,6 +164,8 @@
 }
 
 .footer {
+    background-color: $main-black;
+
     &__container {
         @include flex-space-between;
     }
