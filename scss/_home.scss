@@ -12,16 +12,69 @@
     }
 }
 
-.header {
-    @include flex-center(column);
+.slider {
     @include parallax-item;
     width: 101%;
     min-height: 100vh;
     text-align: center;
     color: $main-white;
 
-    &::before {
-        @include parallax-bg("slide/slide01", top);
+    &__slide {
+        @include flex-center(column);
+        height: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 100%;
+        transition-delay: .35s;
+
+        @for $i from 1 through 5 {
+            &:nth-of-type(#{$i}) {
+                &::before {
+                    @include parallax-bg("slide/slide0#{$i}", top);
+                }
+            }
+        }
+    }
+
+    &__button--hidden {
+        display: none;
+    }
+
+    @for $i from 1 through 5 {
+        &__button:nth-of-type(#{$i}):checked ~ &__slide-bar &__label:nth-of-type(#{$i}) {
+            background-color: $main-white;
+        }
+
+        &__button:nth-of-type(#{$i}):checked ~ &__slide:nth-of-type(#{$i}) {
+            @include transition;
+            bottom: 0;
+            z-index: 1;
+        }
+    }
+
+    &__slide-bar {
+        position: absolute;
+        bottom: 4rem;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        font-size: 0;
+        z-index: 2;
+    }
+        
+    &__label {
+        @include transition;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: $subheading-color;
+        border-radius: 50%;
+        cursor: pointer;
+        
+        &:not(:last-child) {
+            margin-right: 1rem;
+        }
     }
 
     &__heading {
