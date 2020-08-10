@@ -1,13 +1,11 @@
 .menu {
-    z-index: 10;
-
     &__button {
         @include flex-center;
         width: 30px;
         height: 25px;
         position: fixed;
         top: 1rem;
-        right: 1rem;
+        left: 1rem;
         z-index: 11;
         cursor: pointer;
     }
@@ -69,9 +67,10 @@
         padding: 5rem 2rem;
         position: fixed;
         top: 0;
-        right: 0;
+        left: 0;
         background-color: $transparent-black;
-        transform: translateX(100%);
+        transform: translateX(-100%);
+        z-index: 10;
 
         &--open {
             transform: translateX(0);
