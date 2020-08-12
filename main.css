@@ -653,7 +653,7 @@ h3 {
   cursor: pointer;
 }
 
-.menu__hamburger, .menu__hamburger::before, .menu__hamburger::after {
+.menu .menu__hamburger, .menu .menu__hamburger::before, .menu .menu__hamburger::after {
   -webkit-transition: all .35s;
   transition: all .35s;
   width: 100%;
@@ -664,10 +664,6 @@ h3 {
 
 :hover > .menu__hamburger, :hover > .menu__hamburger::before, :hover > .menu__hamburger::after {
   background-color: #fff;
-}
-
-:hover > .menu__hamburger--open {
-  background-color: transparent;
 }
 
 .menu__hamburger::before {
@@ -684,17 +680,17 @@ h3 {
   bottom: 0;
 }
 
-.menu__hamburger--open {
+.menu--open .menu__hamburger {
   background-color: transparent;
 }
 
-.menu__hamburger--open::before {
+.menu--open .menu__hamburger::before {
   -webkit-transform: translateY(-50%) rotate(45deg);
           transform: translateY(-50%) rotate(45deg);
   top: 50%;
 }
 
-.menu__hamburger--open::after {
+.menu--open .menu__hamburger::after {
   -webkit-transform: translateY(50%) rotate(-45deg);
           transform: translateY(50%) rotate(-45deg);
   bottom: 50%;
@@ -716,7 +712,7 @@ h3 {
   z-index: 10;
 }
 
-.menu__list--open {
+.menu--open .menu__list {
   -webkit-transform: translateX(0);
           transform: translateX(0);
 }

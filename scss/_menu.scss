@@ -1,4 +1,6 @@
 .menu {
+    $m: &;
+
     &__button {
         @include flex-center;
         width: 30px;
@@ -10,23 +12,23 @@
         cursor: pointer;
     }
 
-    &__hamburger {
+    %hamburger {
         @include transition;
         width: 100%;
         height: 3px;
         background-color: $subheading-color;
         border-radius: 10px;
+    }
 
-        :hover > & {
+    &__hamburger {
+        @extend %hamburger;
+
+        :hover > &, :hover > &::before, :hover > &::after {
             background-color: $main-white;
-
-            &--open {
-                background-color: transparent;
-            }
         }
 
         &::before {
-            @extend .menu__hamburger;
+            @extend %hamburger;
             content: "";
             position: absolute;
             left: 0;
@@ -34,14 +36,14 @@
         }
 
         &::after {
-            @extend .menu__hamburger;
+            @extend %hamburger;
             content: "";
             position: absolute;
             left: 0;
             bottom: 0;
         }
 
-        &--open {
+        #{$m}--open & {
             background-color: transparent;
 
             &::before {
@@ -72,7 +74,7 @@
         transform: translateX(-100%);
         z-index: 10;
 
-        &--open {
+        #{$m}--open & {
             transform: translateX(0);
         }
 
