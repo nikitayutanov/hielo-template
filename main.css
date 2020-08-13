@@ -54,7 +54,6 @@ body {
   color: #999;
 }
 
-header,
 footer,
 section {
   padding: 3rem 1.5rem;
@@ -91,8 +90,9 @@ h3 {
   overflow: hidden;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  width: 101%;
+  width: 105%;
   min-height: 100vh;
+  height: 100%;
   text-align: center;
   color: #fff;
 }
@@ -112,6 +112,7 @@ h3 {
       -ms-flex-align: center;
           align-items: center;
   height: 100%;
+  padding: 0 7rem;
   position: absolute;
   left: 0;
   right: 0;
@@ -199,7 +200,7 @@ h3 {
   display: none;
 }
 
-.slider__button:nth-of-type(1):checked ~ .slider__slide-bar .slider__label:nth-of-type(1) {
+.slider__button:nth-of-type(1):checked ~ .slider__bar .slider__label:nth-of-type(1) {
   background-color: #fff;
 }
 
@@ -210,7 +211,7 @@ h3 {
   z-index: 1;
 }
 
-.slider__button:nth-of-type(2):checked ~ .slider__slide-bar .slider__label:nth-of-type(2) {
+.slider__button:nth-of-type(2):checked ~ .slider__bar .slider__label:nth-of-type(2) {
   background-color: #fff;
 }
 
@@ -221,7 +222,7 @@ h3 {
   z-index: 1;
 }
 
-.slider__button:nth-of-type(3):checked ~ .slider__slide-bar .slider__label:nth-of-type(3) {
+.slider__button:nth-of-type(3):checked ~ .slider__bar .slider__label:nth-of-type(3) {
   background-color: #fff;
 }
 
@@ -232,7 +233,7 @@ h3 {
   z-index: 1;
 }
 
-.slider__button:nth-of-type(4):checked ~ .slider__slide-bar .slider__label:nth-of-type(4) {
+.slider__button:nth-of-type(4):checked ~ .slider__bar .slider__label:nth-of-type(4) {
   background-color: #fff;
 }
 
@@ -243,7 +244,7 @@ h3 {
   z-index: 1;
 }
 
-.slider__button:nth-of-type(5):checked ~ .slider__slide-bar .slider__label:nth-of-type(5) {
+.slider__button:nth-of-type(5):checked ~ .slider__bar .slider__label:nth-of-type(5) {
   background-color: #fff;
 }
 
@@ -254,20 +255,95 @@ h3 {
   z-index: 1;
 }
 
-.slider__slide-bar {
+.slider__bar {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slider__side-button {
+  -webkit-transition: all .35s;
+  transition: all .35s;
+  width: 50%;
+  height: 100%;
+  position: relative;
+  font-size: 2rem;
+  color: #bbb;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.slider__side-button:focus {
+  outline: none;
+}
+
+.slider__prev-button {
+  float: left;
+}
+
+.slider__prev-button:hover ~ .slider__label-container::before {
+  color: #fff;
+}
+
+.slider__next-button {
+  float: right;
+}
+
+.slider__next-button:hover ~ .slider__label-container::after {
+  color: #fff;
+}
+
+.slider .slider__label-container::before, .slider .slider__label-container::after {
+  -webkit-transition: all .35s;
+  transition: all .35s;
   position: absolute;
-  bottom: 4rem;
+  font-family: "Font Awesome 5 Free";
+  font-size: 2rem;
+  font-weight: 900;
+  color: #bbb;
+  pointer-events: none;
+}
+
+.slider__label-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 200px;
+  height: 100px;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 3rem;
   left: 0;
   right: 0;
-  margin: 0 auto;
   font-size: 0;
-  z-index: 2;
+  z-index: 3;
+}
+
+.slider__label-container::before {
+  content: "\f053";
+  right: 105%;
+}
+
+.slider__label-container::after {
+  content: "\f054";
+  left: 105%;
 }
 
 .slider__label {
   -webkit-transition: all .35s;
   transition: all .35s;
-  display: inline-block;
   width: 20px;
   height: 20px;
   background-color: #bbb;
@@ -275,7 +351,7 @@ h3 {
   cursor: pointer;
 }
 
-.slider__label:not(:last-child) {
+.slider__label:not(:last-of-type) {
   margin-right: 1rem;
 }
 
@@ -411,7 +487,7 @@ h3 {
   overflow: hidden;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  width: 101%;
+  width: 105%;
   min-height: 150px;
   padding: 0 1.5rem;
 }

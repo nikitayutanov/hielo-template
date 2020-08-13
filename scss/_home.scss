@@ -14,14 +14,16 @@
 
 .slider {
     @include parallax-item;
-    width: 101%;
+    width: 105%;
     min-height: 100vh;
+    height: 100%; 
     text-align: center;
     color: $main-white;
 
     &__slide {
         @include flex-center(column);
         height: 100%;
+        padding: 0 7rem;
         position: absolute;
         left: 0;
         right: 0;
@@ -42,7 +44,7 @@
     }
 
     @for $i from 1 through 5 {
-        &__button:nth-of-type(#{$i}):checked ~ &__slide-bar &__label:nth-of-type(#{$i}) {
+        &__button:nth-of-type(#{$i}):checked ~ &__bar &__label:nth-of-type(#{$i}) {
             background-color: $main-white;
         }
 
@@ -53,26 +55,89 @@
         }
     }
 
-    &__slide-bar {
+    &__bar {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    &__side-button {
+        @include transition;
+        width: 50%;
+        height: 100%;
+        position: relative;
+        font-size: 2rem;
+        color: $subheading-color;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 2;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__prev-button {
+        float: left;
+
+        &:hover ~ .slider__label-container::before {
+            color: $main-white;
+        }
+    }
+
+    &__next-button {
+        float: right;
+
+        &:hover ~ .slider__label-container::after {
+            color: $main-white;
+        }
+    }
+
+    %side-icon {
+        @include transition;
         position: absolute;
-        bottom: 4rem;
+        font-family: "Font Awesome 5 Free";
+        font-size: 2rem;
+        font-weight: 900;
+        color: $subheading-color;
+        pointer-events: none;
+    }
+    
+    &__label-container {
+        @include flex-center;
+        width: 200px;
+        height: 100px;
+        margin: 0 auto;
+        position: absolute;
+        bottom: 3rem;
         left: 0;
         right: 0;
-        margin: 0 auto;
         font-size: 0;
-        z-index: 2;
+        z-index: 3;
+
+        &::before {
+            @extend %side-icon;
+            content: "\f053";
+            right: 105%;
+        }
+
+        &::after {
+            @extend %side-icon;
+            content: "\f054";
+            left: 105%;
+        }
     }
         
     &__label {
         @include transition;
-        display: inline-block;
         width: 20px;
         height: 20px;
         background-color: $subheading-color;
         border-radius: 50%;
         cursor: pointer;
         
-        &:not(:last-child) {
+        &:not(:last-of-type) {
             margin-right: 1rem;
         }
     }
@@ -163,7 +228,7 @@
     &__header {
         $splitter-height: 150px;
         @include parallax-item;
-        width: 101%;
+        width: 105%;
         min-height: $splitter-height;
         padding: 0 $padding-l-r;
     
