@@ -59,3 +59,14 @@ nextBtn.addEventListener('click', () => nextSlide());
 buttons.forEach((slide, index) => slide.addEventListener('click', () => position = index));
 
 setInterval(nextSlide, 5000);
+
+// Parallax
+
+const slides = document.querySelectorAll('.slider__slide');
+const speed = 0.7;
+let offset;
+
+window.addEventListener('scroll', () => {
+    offset = window.pageYOffset;
+    slides.forEach(slide => slide.style.backgroundPositionY =  offset * speed + 'px');
+});

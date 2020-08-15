@@ -3,38 +3,29 @@
         max-width: 1300px;
         margin: 0 auto;
     }
-
-    &__parallax-container {
-        height: 100vh;
-        overflow-x: hidden;
-        overflow-y: auto;
-        perspective: 1px;
-    }
 }
 
 .slider {
-    @include parallax-item;
-    width: 105%;
-    min-height: 100vh;
-    height: 100%; 
+    height: 100vh;
+    position: relative;
     text-align: center;
     color: $main-white;
 
     &__slide {
         @include flex-center(column);
         height: 100%;
-        padding: 0 7rem;
+        padding: 0 $padding-l-r;
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 100%;
-        transition-delay: .35s;
+        top: 0;
+        opacity: 0;
+        transition-delay: $def-transition;
 
         @for $i from 1 through 5 {
             &:nth-of-type(#{$i}) {
-                &::before {
-                    @include parallax-bg("slide/slide0#{$i}", top);
-                }
+                background: linear-gradient(to right, $dark-layer, $dark-layer),
+                            url(img/slide/slide0#{$i}.jpg) top/cover no-repeat;
             }
         }
     }
@@ -49,23 +40,19 @@
         }
 
         &__button:nth-of-type(#{$i}):checked ~ &__slide:nth-of-type(#{$i}) {
-            @include transition;
-            bottom: 0;
+            opacity: 1;
+            transition: opacity $def-transition;
             z-index: 1;
         }
     }
 
-    &__bar {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
 
     &__side-button {
         @include transition;
         width: 50%;
         height: 100%;
-        position: relative;
+        position: absolute;
+        top: 0;
         font-size: 2rem;
         color: $subheading-color;
         background-color: transparent;
@@ -79,7 +66,7 @@
     }
 
     &__prev-button {
-        float: left;
+        left: 0;
 
         &:hover ~ .slider__label-container::before {
             color: $main-white;
@@ -87,7 +74,7 @@
     }
 
     &__next-button {
-        float: right;
+        right: 0;
 
         &:hover ~ .slider__label-container::after {
             color: $main-white;
@@ -158,6 +145,7 @@
 
 .recent-articles {
     @include flex-space-between;
+    @include padding;
     margin-bottom: -$margin-b;
 }
 
@@ -222,19 +210,16 @@
 }
 
 .gallery {
-    padding: 0 0 $padding-t-b 0;
+    padding-bottom: $padding-t-b;
     text-align: center;
 
     &__header {
         $splitter-height: 150px;
-        @include parallax-item;
-        width: 105%;
         min-height: $splitter-height;
         padding: 0 $padding-l-r;
-    
-        &::before {
-            @include parallax-bg("bg", bottom); 
-        }
+        background: linear-gradient(to right, $dark-layer, $dark-layer),
+                    url(img/bg.jpg) bottom/cover no-repeat;
+        background-attachment: fixed;
     
         h2 {
             text-align: left;
@@ -245,6 +230,7 @@
 
     &__main {
         @include flex-center;
+        @include padding;
         flex-wrap: wrap;
     }
     
@@ -282,6 +268,7 @@
 }
 
 .footer {
+    @include padding;
     background-color: $main-black;
 
     &__container {

@@ -10,6 +10,7 @@ $top: 100%;
 $margin-b: 2rem;
 $padding-t-b: 3rem;
 $padding-l-r: 1.5rem;
+$def-transition: .35s;
 
 @mixin flex-center($direction: row) {
     display: flex;
@@ -25,7 +26,11 @@ $padding-l-r: 1.5rem;
 }
 
 @mixin transition {
-    transition: all .35s;
+    transition: all $def-transition;
+}
+
+@mixin padding {
+    padding: $padding-t-b $padding-l-r;
 }
 
 @mixin underline($bottom: 0) {
@@ -43,26 +48,6 @@ $padding-l-r: 1.5rem;
 @mixin square-width($percentages) {
     width: $percentages;
     padding-bottom: $percentages;
-}
-
-@mixin parallax-item {
-    position: relative;
-    overflow: hidden;
-    transform-style: preserve-3d;
-}
-
-@mixin parallax-bg($image, $position: center) {
-    content: "";
-    min-height: 100vh; 
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(to right, $dark-layer, $dark-layer),
-                url(img/#{$image}.jpg) $position/cover no-repeat;
-    transform: translateZ(-1px) scale(2);
-    z-index: -1;
 }
 
 @mixin sm {
@@ -120,11 +105,6 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     color: $text-color;
-}
-
-footer,
-section {
-    padding: $padding-t-b $padding-l-r;
 }
 
 main {
