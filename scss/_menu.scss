@@ -1,6 +1,15 @@
 .menu {
     $m: &;
 
+    &--open {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 9;
+    }
+
     &__button {
         @include flex-center;
         width: 30px;
