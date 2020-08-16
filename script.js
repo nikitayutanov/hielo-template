@@ -70,3 +70,19 @@ window.addEventListener('scroll', () => {
     offset = window.pageYOffset;
     slides.forEach(slide => slide.style.backgroundPositionY =  offset * speed + 'px');
 });
+
+// Gallery
+
+const images = document.querySelectorAll('.gallery__image');
+const modalWindow = document.querySelector('.modal');
+const modalImage = document.querySelector('.modal__image');
+let imgSrc;
+
+images.forEach(image => {
+    image.addEventListener('click', () => {
+        modalImage.src = image.src;
+        modalWindow.style.display = 'block';
+    });
+});
+
+modalWindow.addEventListener('click', () => modalWindow.style.display = 'none');

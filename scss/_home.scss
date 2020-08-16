@@ -267,6 +267,52 @@
     }
 }
 
+.modal {
+    @include flex-center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $dark-layer;
+    z-index: 15;
+    display: none;
+
+    @include sm {
+        @include padding;
+    }
+
+    &__img-wrapper {
+        @include square-width(100%);
+        max-width: 1000px;
+        position: relative;
+        background-color: $main-white;
+        border-radius: 5px;
+
+        @include sm {
+            padding: .5rem;
+        }
+    }
+
+    &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: .5rem solid $main-white;
+        border-radius: 5px;
+
+        @include sm {
+            position: relative;
+            height: auto;
+            border: none;
+            border-radius: 0;
+        }
+    }
+}
+
 .footer {
     @include padding;
     background-color: $main-black;
