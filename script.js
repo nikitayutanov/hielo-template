@@ -27,8 +27,8 @@ document.addEventListener('click', (event) => {
 
 // Slider
 
-const prevBtn = document.querySelector('.slider__prev-button');
-const nextBtn = document.querySelector('.slider__next-button');
+const prevBtn = document.querySelector('.slider__side-button--prev');
+const nextBtn = document.querySelector('.slider__side-button--next');
 const buttons = document.querySelectorAll('.slider__button');
 const startPosition = 0;
 const lastSlide = buttons.length - 1;
@@ -76,13 +76,45 @@ window.addEventListener('scroll', () => {
 const images = document.querySelectorAll('.gallery__image');
 const modalWindow = document.querySelector('.modal');
 const modalImage = document.querySelector('.modal__image');
-let imgSrc;
+const prevBtnImg = document.querySelector('.modal__side-button--prev');
+const nextBtnImg = document.querySelector('.modal__side-button--next');
+let firstImage = 0;
+let lastImage = images.length - 1;
+let currentImage;
 
-images.forEach(image => {
+function nextImage() {
+    if (currentImage != lastImage) {
+        currentImage++;
+        
+    } else {
+        currentImage = firstImage;
+    }
+    modalImage.src = images[currentImage].src;
+}
+
+function prevImage() {
+    if (currentImage != firstImage) {
+        currentImage--;
+        
+    } else {
+        currentImage = lastImage;
+    }
+    modalImage.src = images[currentImage].src;
+}
+
+images.forEach((image, index) => {
     image.addEventListener('click', () => {
+        currentImage = index;
         modalImage.src = image.src;
-        modalWindow.style.display = 'block';
+        modalWindow.style.display = 'flex';
     });
 });
 
-modalWindow.addEventListener('click', () => modalWindow.style.display = 'none');
+prevBtnImg.addEventListener('click', () => prevImage());
+nextBtnImg.addEventListener('click', () => nextImage());
+
+modalWindow.addEventListener('click', (event) => {
+    if (event.target == modalWindow || event.target.closest('.modal__cross-button')) {
+        modalWindow.style.display = 'none';
+    }
+});
