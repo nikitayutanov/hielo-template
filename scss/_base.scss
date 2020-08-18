@@ -27,7 +27,7 @@ $def-transition: .35s;
 }
 
 @mixin transition {
-    transition: all $def-transition;
+    transition: all $def-transition ease-in-out;
 }
 
 @mixin padding {

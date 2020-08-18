@@ -106,7 +106,7 @@ images.forEach((image, index) => {
     image.addEventListener('click', () => {
         currentImage = index;
         modalImage.src = image.src;
-        modalWindow.style.display = 'flex';
+        modalWindow.classList.add('modal--visible');
     });
 });
 
@@ -115,6 +115,6 @@ nextBtnImg.addEventListener('click', () => nextImage());
 
 modalWindow.addEventListener('click', (event) => {
     if (event.target == modalWindow || event.target.closest('.modal__cross-button')) {
-        modalWindow.style.display = 'none';
+        modalWindow.classList.remove('modal--visible');
     }
 });

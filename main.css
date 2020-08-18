@@ -34,8 +34,8 @@ ul, ol {
 }
 
 .card__button, .gallery__button, .form__submit {
-  -webkit-transition: all 0.35s;
-  transition: all 0.35s;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   padding: 0.5rem 1rem;
   text-transform: uppercase;
   color: #000;
@@ -189,8 +189,8 @@ h3 {
 }
 
 .slider__side-button {
-  -webkit-transition: all 0.35s;
-  transition: all 0.35s;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   width: 50%;
   height: 100%;
   position: absolute;
@@ -224,8 +224,8 @@ h3 {
 }
 
 .slider .slider__label-container::before, .slider .slider__label-container::after {
-  -webkit-transition: all 0.35s;
-  transition: all 0.35s;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   position: absolute;
   font-family: "Font Awesome 5 Free";
   font-size: 2rem;
@@ -270,8 +270,8 @@ h3 {
 }
 
 .slider__label {
-  -webkit-transition: all 0.35s;
-  transition: all 0.35s;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   width: 20px;
   height: 20px;
   background-color: #bbb;
@@ -466,8 +466,8 @@ h3 {
 }
 
 .gallery__image {
-  -webkit-transition: all 0.35s;
-  transition: all 0.35s;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -497,14 +497,16 @@ h3 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: transparent;
   z-index: 15;
-  display: none;
+  visibility: hidden;
 }
 
 @media screen and (min-width: 576px) {
@@ -513,22 +515,38 @@ h3 {
   }
 }
 
-.modal__img-wrapper {
+.modal--visible {
+  background-color: rgba(0, 0, 0, 0.25);
+  visibility: visible;
+}
+
+.modal__container {
   width: 100%;
   padding-bottom: 100%;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   max-width: 1000px;
   position: relative;
   background-color: #fff;
   border-radius: 5px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
 }
 
 @media screen and (min-width: 576px) {
-  .modal__img-wrapper {
+  .modal__container {
     padding: .5rem;
   }
 }
 
+.modal--visible .modal__container {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
 .modal__image {
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   position: absolute;
   top: 0;
   left: 0;
@@ -584,8 +602,8 @@ h3 {
 }
 
 .modal__side-button {
-  -webkit-transition: all 0.35s;
-  transition: all 0.35s;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   width: 15%;
   height: 100%;
   position: absolute;
@@ -673,8 +691,8 @@ h3 {
 }
 
 .social__button {
-  -webkit-transition: all 0.35s;
-  transition: all 0.35s;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   font-size: 2.5em;
   color: #999;
 }
@@ -787,8 +805,8 @@ h3 {
 }
 
 .menu .menu__hamburger, .menu .menu__hamburger::before, .menu .menu__hamburger::after {
-  -webkit-transition: all 0.35s;
-  transition: all 0.35s;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   width: 100%;
   height: 3px;
   background-color: #bbb;
@@ -830,8 +848,8 @@ h3 {
 }
 
 .menu__list {
-  -webkit-transition: all 0.35s;
-  transition: all 0.35s;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   max-width: 350px;
   width: 80%;
   height: 100vh;
@@ -851,8 +869,8 @@ h3 {
 }
 
 .menu__list a {
-  -webkit-transition: all 0.35s;
-  transition: all 0.35s;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   display: block;
   width: 100%;
   margin: 0 auto;

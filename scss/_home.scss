@@ -250,33 +250,47 @@
 }
 
 .modal {
+    $m: &;
     @include flex-center;
+    @include transition;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: $dark-layer;
+    background-color: transparent;
     z-index: 15;
-    display: none;
+    visibility: hidden;
 
     @include sm {
         @include padding;
     }
 
-    &__img-wrapper {
+    &--visible {
+        background-color: $dark-layer;
+        visibility: visible;
+    }
+
+    &__container {
         @include square-width(100%);
+        @include transition;
         max-width: 1000px;
         position: relative;
         background-color: $main-white;
         border-radius: 5px;
+        transform: scale(0);
 
         @include sm {
             padding: .5rem;
         }
+
+        #{$m}--visible & {
+            transform: scale(1);
+        }
     }
 
     &__image {
+        @include transition;
         position: absolute;
         top: 0;
         left: 0;
