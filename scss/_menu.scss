@@ -1,5 +1,10 @@
+$item-color: transparentize($main-white, .5);
+$underline-color: transparentize($main-white, .85);
+$transparent-black: #000000ec;
+
 .menu {
     $m: &;
+    $l: #{&}__list;
 
     &--open {
         position: fixed;
@@ -19,6 +24,10 @@
         right: 1rem;
         z-index: 11;
         cursor: pointer;
+
+        @include lg {
+            position: absolute;
+        }
     }
 
     %hamburger {
@@ -67,43 +76,73 @@
         }
     }
 
-    &__list {
-        $item-color: transparentize($main-white, .5);
-        $underline-color: transparentize($main-white, .85);
-        $transparent-black: #000000ec;
+    %list {
         @include transition;
-        max-width: 350px;
-        width: 80%;
-        height: 100vh;
-        padding: 5rem 2rem;
         position: fixed;
         top: 0;
         right: 0;
         background-color: $transparent-black;
-        transform: translateX(100%);
         z-index: 10;
+    }
+
+    &__list {
+        @extend %list;
+        max-width: 350px;
+        width: 80%;
+        height: 100vh;
+        padding: 5rem 2rem;
+        transform: translateX(100%);
+
+        &--wide {
+            @extend %list;
+            display: none;
+            width: 100%;
+            transform: translateY(-100%);
+
+            @include lg {
+                display: flex;
+            }
+        }
+
+        &--active {
+            transform: translateY(0);
+        }
 
         #{$m}--open & {
             transform: translateX(0);
         }
+    }
 
-        a {
-            @include transition;
-            display: block;
-            width: 100%;
-            margin: 0 auto;
-            padding: 1.25rem 0;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            text-align: left;
-            color: $item-color;
-        }
-
-        li:not(:last-child) {
+    &__item {
+        &:not(:last-child) {
             border-bottom: 1px solid $underline-color;
+
+            #{$l}--wide & {
+                border-bottom: none;
+            }
         }
 
-        a:hover {
+        #{$l}--wide & {
+            border-right: 1px solid $underline-color;
+        }
+    }
+
+    &__link {
+        @include transition(color);
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        padding: 1.25rem 0;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        text-align: left;
+        color: $item-color;
+
+        #{$l}--wide & {
+            padding: 1rem 4rem;
+        }
+        
+        &:hover, &--active {
             color: $main-white;
         }
     }

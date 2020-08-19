@@ -40,8 +40,8 @@
         }
 
         &__button:nth-of-type(#{$i}):checked ~ &__slide:nth-of-type(#{$i}) {
+            @include transition(opacity);
             opacity: 1;
-            transition: opacity $def-transition;
             z-index: 1;
         }
     }

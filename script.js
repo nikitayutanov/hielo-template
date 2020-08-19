@@ -4,12 +4,18 @@
 
 const menu = {
     class: {
+        list: {
+            main: '.menu__list',
+            wide: 'menu__list--wide',
+            active: 'menu__list--active'
+        },
+
         button: '.menu__button',
-        list: '.menu__list',
         open: 'menu--open'
     },
 
     nav: document.querySelector('.menu'),
+    list: document.querySelector('.menu__list'),
     visible: false,
 
     open() {
@@ -25,13 +31,17 @@ const menu = {
     toggle(e) { 
         if (e.target.closest(this.class.button) && !this.visible) {
             this.open();
-        } else if (!e.target.closest(this.class.list) && this.visible) {
+        } else if (!e.target.closest(this.class.list.main) && this.visible) {
             this.close();
         }
     }
 }
 
 menu.nav.addEventListener('click', (e) => menu.toggle(e));
+
+const wideMenu = menu.list.cloneNode(true);
+wideMenu.className = menu.class.list.wide;
+menu.nav.appendChild(wideMenu);
 
 // Slider
 
@@ -79,15 +89,29 @@ slider.addEventListener('click', (e) => {
     clearInterval(timer);
 });
 
-// Parallax
+// Parallax + desktop menu
 
 const slides = document.querySelectorAll('.slider__slide');
 const speed = 0.7;
 let offset;
 
+const height = window.innerHeight;
+const lgMediaQuery = window.matchMedia('(min-width: 992px)');
+
 window.addEventListener('scroll', () => {
     offset = window.pageYOffset;
     slides.forEach(slide => slide.style.backgroundPositionY =  offset * speed + 'px');
+
+    if (lgMediaQuery.matches) {
+        if (offset >= height) {
+            if (menu.visible) {
+                menu.close();
+            }
+            wideMenu.classList.add(menu.class.list.active);
+        } else {
+            wideMenu.classList.remove(menu.class.list.active);
+        }
+    }
 });
 
 // Gallery
