@@ -144,8 +144,9 @@ function changeImage(e) {
     }
 }
 
-gallery.addEventListener('click', (e) => {
-    showPopup(e);
+gallery.addEventListener('click', (e) => showPopup(e));
+
+modal.addEventListener('click', (e) => {
     closePopup(e);
     changeImage(e);
 });
