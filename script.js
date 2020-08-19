@@ -72,9 +72,12 @@ function changeSlide(e) {
     }
 }
 
-slider.addEventListener('click', (e) => changeSlide(e));
+const timer = setInterval(nextSlide, 5000);
 
-setInterval(nextSlide, 5000);
+slider.addEventListener('click', (e) => {
+    changeSlide(e);
+    clearInterval(timer);
+});
 
 // Parallax
 
